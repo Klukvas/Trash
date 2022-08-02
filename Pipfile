@@ -4,9 +4,12 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+requests = "*"
 pytest = "*"
+pydantic = {extras = ["email"], version = "*"}
+pyhamcrest = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.10"
+python_version = "3.9"
