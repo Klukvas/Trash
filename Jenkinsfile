@@ -1,8 +1,10 @@
-pipline{
-    agent: any
-    stages{
-        stage('Test pipline'){
-            echo 'Trash-Pipline-Test'
+pipeline {
+    agent any 
+    stages {
+        stage('Stage 1') {
+            steps {
+                echo 'Hello world!' 
+            }
         }
     }
 }
