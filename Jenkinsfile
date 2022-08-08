@@ -1,10 +1,15 @@
-pipeline {
-    agent any 
-    stages {
-        stage('Stage 1') {
-            steps {
-                echo 'Hello world!1' 
-            }
-        }
+node{
+
+    stage('Init'){
+        sh'pipenv install --system'
+    }
+    stage('Run tests of getting all users'){
+        sh'pipenv run pytest -s -vv -m all_users'
+    }
+    stage('Run tests of getting one user by id'){
+        sh'pipenv run pytest -s -vv -m one_user'
+    }
+    stage('Run tests of getting user`s posts'){
+        sh'pipenv run pytest -s -vv -m user_posts'
     }
 }

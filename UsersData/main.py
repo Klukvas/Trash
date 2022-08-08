@@ -13,8 +13,6 @@ class Users:
     def get_user_data(self, usr_id):
         response = get(self.main_url + f"/public/v2/users/{usr_id}")
         return response
-
-
     
     def get_posts_of_user(self, usr_id):
         response = get(self.main_url + f"/public/v2/users/{usr_id}/posts")
@@ -24,4 +22,4 @@ class Users:
 
 if __name__ == "__main__":
     o = Users()
-    print(o.get_all_users().json())
+    print(o.get_posts_of_user(1).json())

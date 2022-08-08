@@ -53,6 +53,7 @@ mock_response = [
 from typing import List, Optional
 from pydantic import BaseModel, EmailStr, AnyHttpUrl, Field, ValidationError, validator
 from .enums import *
+
 class MockResponsePhoneField(BaseModel):
     home: str
     mobile: str
@@ -68,11 +69,7 @@ class MockResponse(BaseModel):
     address: str
     mail: EmailStr
     phone: MockResponsePhoneField
-# for num, item in enumerate(mock_response):
-#     try:
-#         MockResponse.parse_obj(item)
-#     except Exception as err:
-#         print(f"Some error with object #{num}\nError: {err}")
+
 
 class User(BaseModel):
     id: int
@@ -86,6 +83,31 @@ class User(BaseModel):
         if type(_id) == int:
             return _id
         raise ValidationError(f"Excepted that id`s value type is int; But got: {type(_id)}")
+
+class UserNotExists(BaseModel):
+    message: str
+    
+    @validator('message')
+    def check_message_val(cls, message):
+        print(message)
+        if message != 'Resource not found':
+            raise ValidationError(f"Excepted that message will be 'Resource not found'; But got: {message}")
+
+class Post(BaseModel):
+    id: int
+    user_id:int
+    title:str
+    body:str
+    @validator('id', pre=True)
+    def check_id_value_type(cls, _id):
+        if type(_id) == int:
+            return _id
+        raise ValidationError(f"Excepted that id`s value type is int; But got: {type(_id)}")
+    @validator('user_id', pre=True)
+    def check_user_id_value_type(cls, user_id):
+        if type(user_id) == int:
+            return user_id
+        raise ValidationError(f"Excepted that user_id`s value type is int; But got: {type(user_id)}")
 
 if __name__ == "__main__":
     t_d = {

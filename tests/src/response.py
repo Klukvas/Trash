@@ -14,6 +14,10 @@ class Response:
             for item in self.response.json():
                 schema.parse_obj(item)
         else: 
+            print(self.response.json())
             schema.parse_obj(self.response.json())
         return self
-        
+    
+    def check_value_type_of_response(self, excpected_type):
+        assert_that(self.response.json(), is_(excpected_type))
+        return self
