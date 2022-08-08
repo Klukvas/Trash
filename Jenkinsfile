@@ -1,5 +1,5 @@
 def getImageName(){
-    def name = 'jenkinsTraining_${BUILD_NUMBER}' 
+    def name = "jenkinsTraining_" + "${env.BUILD_NUMBER}" 
     return name
 }
 node{
