@@ -1,5 +1,5 @@
 node{
-    docker.image('3.9.13-buster').inside{
+    docker.image('python:3.10.5-slim-buster').inside{
         stage('Init'){
             sh 'pip3 install pipenv'
             sh 'pipenv install --system'
