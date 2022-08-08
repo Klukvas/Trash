@@ -3,6 +3,9 @@ def getImageName(){
     return name
 }
 node{
+    stage('Clone sources') {
+        git url: 'https://github.com/Klukvas/Trash'
+    }
     def app
     stage('Build'){
         echo getImageName()
