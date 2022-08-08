@@ -6,6 +6,7 @@ node{
     def app
     stage('Build'){
         echo getImageName()
+        echo 'ls -la'
         app = docker.build(getImageName())
     }
     stage('Run tests of getting all users'){
